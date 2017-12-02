@@ -10,7 +10,7 @@ endif
 " Keywords
 syn keyword gluonConditional    match if else with then
 syn keyword gluonTypeDef        type
-syn keyword gluonKeyword        let in and
+syn keyword gluonKeyword        do let in and
 syn keyword gluonBoolean        True False
 syn keyword gluonTodo contained TODO FIXME NOTE
 
