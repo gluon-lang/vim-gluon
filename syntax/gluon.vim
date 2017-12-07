@@ -31,7 +31,7 @@ hi def link gluonType           Type
 syn match gluonEscape           display contained /\\\([nrt0\\'"]\|x\x\{2}\)/
 syn match gluonStringContinuation display contained /\\\n\s*/
 syn match gluonShebang          /\%^#![^[].*/
-syn match gluonOperator        "[#+-/&|=<>:.\*]\+"
+syn match gluonOperator        "[!#$%&\*+-./<=>?@\\^|-~:]\+"
 
 hi def link gluonShebang        Comment
 hi def link gluonOperator       Operator
