@@ -83,6 +83,8 @@ hi def link gluonCharacterInvalid Error
 hi def link gluonCharacterInvalidUnicode gluonCharacterInvalid
 hi def link gluonCharacter Character
 
+hi def link gluonAttribute PreProc
+
 " Comments
 syn region gluonCommentLine     start="//" end="$" contains=gluonTodo,@Spell
 syn region gluonCommentLine     start="/\*" end="\*/" contains=gluonTodo,@Spell
