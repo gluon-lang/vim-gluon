@@ -55,11 +55,27 @@ syntax match gluonNumber        "\v<0o\o+>"
 hi def link Integer             Number
 hi def link gluonNumber         Number
 
-" Strings
-syn region gluonString          start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=gluonEscape,gluonStringContinuation,@Spell
-syn region gluonString          start=+'+ skip=+\\\\\|\\"+ end=+'+ contains=gluonEscape,gluonStringContinuation,@Spell
+" Characters
+syn match   gluonCharacterInvalid   display contained /b\?'\zs[\n\r\t']\ze'/
+" The groups negated here add up to 0-255 but nothing else (they do not seem to go beyond ASCII).
+syn match   gluonCharacterInvalidUnicode   display contained /b'\zs[^[:cntrl:][:graph:][:alnum:][:space:]]\ze'/
+syn match   gluonCharacter   /b'\([^\\]\|\\\(.\|x\x\{2}\)\)'/ contains=gluonEscape,gluonEscapeError,gluonCharacterInvalid,gluonCharacterInvalidUnicode
+syn match   gluonCharacter   /'\([^\\]\|\\\(.\|x\x\{2}\|u{\%(\x_*\)\{1,6}}\)\)'/ contains=gluonEscape,gluonEscapeUnicode,gluonEscapeError,gluonCharacterInvalid
 
-hi def link gluonString         String
+" Strings
+syn match     gluonEscapeError   display contained /\\./
+syn match     gluonEscape        display contained /\\\([nrt0\\'"]\|x\x\{2}\)/
+syn match     gluonEscapeUnicode display contained /\\u{\%(\x_*\)\{1,6}}/
+syn match     gluonStringContinuation display contained /\\\n\s*/
+syn region gluonString          start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=gluonEscape,gluonEscapeUnicode,gluonEscapeError,gluonStringContinuation,@Spell
+syn region gluonString start='b\?r\z(#*\)"' end='"\z1' contains=@Spell
+
+hi def link gluonStringContinuation Special
+hi def link gluonString String
+
+hi def link gluonCharacterInvalid Error
+hi def link gluonCharacterInvalidUnicode gluonCharacterInvalid
+hi def link gluonCharacter Character
 
 " Comments
 syn region gluonCommentLine     start="//" end="$" contains=gluonTodo,@Spell
