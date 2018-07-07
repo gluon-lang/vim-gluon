@@ -24,7 +24,7 @@ syn match gluonMacro            "\w\+!"
 
 hi def link gluonMacro          Macro
 
-syn match gluonType             "\<[A-Z][A-Za-z_]*\>"
+syn match gluonType             "\<[A-Z][A-Za-z_0-9]*\>"
 
 hi def link gluonType           Type
 
