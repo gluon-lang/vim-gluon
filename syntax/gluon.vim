@@ -70,6 +70,12 @@ syn match     gluonStringContinuation display contained /\\\n\s*/
 syn region gluonString          start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=gluonEscape,gluonEscapeUnicode,gluonEscapeError,gluonStringContinuation,@Spell
 syn region gluonString start='b\?r\z(#*\)"' end='"\z1' contains=@Spell
 
+syn region    gluonAttribute   start="#\[" end="\]" contains=gluonString,gluonDerive,gluonCommentLine,gluonCommentBlock,gluonCommentLineDocError,gluonCommentBlockDocError
+syn region    gluonDerive      start="derive(" end=")" contained contains=gluonDeriveTrait
+"Built-in derives
+syn keyword   gluonDeriveTrait contained Eq Show
+
+
 hi def link gluonStringContinuation Special
 hi def link gluonString String
 
