@@ -39,7 +39,7 @@ function! GluonIndent(lnum)
 
   let ind = previ
 
-  if prevl =~ '[\=({]\s*$'
+  if prevl =~ '\([\=({\[]\|->\)\s*$'
     let ind += s:sw()
   endif
 
